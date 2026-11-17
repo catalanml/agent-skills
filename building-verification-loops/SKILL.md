@@ -50,6 +50,16 @@ Verification means running the changed thing: browser, simulator, the service lo
 
 Every bug that got past the checks leaves a test or check that fails on that exact bug, in the place the next run reads it. A general review rule or hook is added on top when the pattern has occurred at least twice and can be detected from a diff. Prune rules, tests and instruction files routinely; they only grow otherwise.
 
+Put the rule in the lowest layer that can enforce it:
+
+1. Code structure and types, so the wrong path does not compile or import
+2. Lint or static check
+3. Runtime check or test
+4. Review rule
+5. Prose in CLAUDE.md or AGENTS.md, when no program can detect it; if a check exists, the prose is one line pointing to it
+
+Agents imitate the code they read, so a wrong pattern left in the codebase outvotes a written rule against it.
+
 ## Red flags
 
 - "Passed on retry"
